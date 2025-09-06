@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Assets Test - Enchanted Library Quest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #8B5CF6, #60A5FA);
+            color: #1F2937;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 2px solid #E5E7EB;
+            border-radius: 15px;
+            background: #F9FAFB;
+        }
+        .section h2 {
+            color: #8B5CF6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .asset-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .asset-item:hover {
+            transform: translateY(-5px);
+        }
+        .asset-item svg {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            background: #F3F4F6;
+        }
+        .asset-item h3 {
+            margin: 10px 0 5px 0;
+            color: #374151;
+            font-size: 14px;
+        }
+        .asset-item p {
+            margin: 0;
+            color: #6B7280;
+            font-size: 12px;
+        }
+        .ui-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .ui-grid .asset-item svg {
+            width: 120px;
+            height: 80px;
+        }
+        .background-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .background-grid .asset-item svg {
+            width: 280px;
+            height: 200px;
+        }
+        .nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .nav-btn {
+            display: block;
+            margin: 5px 0;
+            padding: 8px 15px;
+            background: #8B5CF6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 12px;
+            transition: background 0.3s ease;
+        }
+        .nav-btn:hover {
+            background: #7C3AED;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="#characters" class="nav-btn">Characters</a>
+        <a href="#backgrounds" class="nav-btn">Backgrounds</a>
+        <a href="#ui-elements" class="nav-btn">UI Elements</a>
+        <a href="index.html" class="nav-btn">Main Game</a>
+    </div>
+
+    <div class="container">
+        <h1 style="text-align: center; color: #8B5CF6; margin-bottom: 40px;">🎨 SVG Assets Gallery</h1>
+        <p style="text-align: center; color: #6B7280; margin-bottom: 40px;">
+            Complete collection of SVG assets for The Enchanted Library Quest
+        </p>
+
+        <!-- Characters Section -->
+        <div id="characters" class="section">
+            <h2>🧙‍♂️ Character Assets</h2>
+            <div class="asset-grid">
+                <div class="asset-item">
+                    <svg viewBox="0 0 400 300">
+                        <use href="assets/images/characters.svg#owl-guardian"/>
+                    </svg>
+                    <h3>Owl Guardian</h3>
+                    <p>Wise Library Keeper</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 400 300">
+                        <use href="assets/images/characters.svg#green-dragon"/>
+                    </svg>
+                    <h3>Ruby the Dragon</h3>
+                    <p>Math Treasure Hunter</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 400 300">
+                        <use href="assets/images/characters.svg#purple-wizard"/>
+                    </svg>
+                    <h3>Sage the Wizard</h3>
+                    <p>Master of Words</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 400 300">
+                        <use href="assets/images/characters.svg#explorer-mouse"/>
+                    </svg>
+                    <h3>Scout the Explorer</h3>
+                    <p>Science Detective</p>
+                </div>
+            </div>
+            
+            <h3 style="color: #8B5CF6; margin-top: 30px;">Player Avatars</h3>
+            <div class="asset-grid">
+                <div class="asset-item">
+                    <svg viewBox="0 0 200 150">
+                        <use href="assets/images/characters.svg#player-light"/>
+                    </svg>
+                    <h3>Light Skin Tone</h3>
+                    <p>Customizable Avatar</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 200 150">
+                        <use href="assets/images/characters.svg#player-medium"/>
+                    </svg>
+                    <h3>Medium Skin Tone</h3>
+                    <p>Customizable Avatar</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 200 150">
+                        <use href="assets/images/characters.svg#player-dark"/>
+                    </svg>
+                    <h3>Dark Skin Tone</h3>
+                    <p>Customizable Avatar</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Backgrounds Section -->
+        <div id="backgrounds" class="section">
+            <h2>🏰 Background Assets</h2>
+            <div class="background-grid">
+                <div class="asset-item">
+                    <svg viewBox="0 0 600 400">
+                        <use href="assets/images/backgrounds.svg#library-entrance"/>
+                    </svg>
+                    <h3>Library Entrance</h3>
+                    <p>Grand magical doorway</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 600 400">
+                        <use href="assets/images/backgrounds.svg#reading-room"/>
+                    </svg>
+                    <h3>Reading Room</h3>
+                    <p>Floating books & warm lighting</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 600 400">
+                        <use href="assets/images/backgrounds.svg#forest-path"/>
+                    </svg>
+                    <h3>Enchanted Forest</h3>
+                    <p>Glowing mushrooms & fireflies</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 600 400">
+                        <use href="assets/images/backgrounds.svg#dragons-cave"/>
+                    </svg>
+                    <h3>Dragon's Cave</h3>
+                    <p>Treasure piles & crystals</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 600 400">
+                        <use href="assets/images/backgrounds.svg#wizards-tower"/>
+                    </svg>
+                    <h3>Wizard's Tower</h3>
+                    <p>Night sky & floating objects</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 600 400">
+                        <use href="assets/images/backgrounds.svg#cloud-kingdom"/>
+                    </svg>
+                    <h3>Cloud Kingdom</h3>
+                    <p>Rainbow bridges & sky castle</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- UI Elements Section -->
+        <div id="ui-elements" class="section">
+            <h2>🎮 UI Elements</h2>
+            
+            <h3 style="color: #8B5CF6;">Choice Buttons</h3>
+            <div class="ui-grid">
+                <div class="asset-item">
+                    <svg viewBox="0 0 200 70">
+                        <use href="assets/images/ui-elements.svg#choice-button-normal"/>
+                    </svg>
+                    <h3>Normal Button</h3>
+                    <p>Book-shaped choice</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 200 70">
+                        <use href="assets/images/ui-elements.svg#choice-button-hover"/>
+                    </svg>
+                    <h3>Hover State</h3>
+                    <p>Glowing effect</p>
+                </div>
+            </div>
+            
+            <h3 style="color: #8B5CF6;">Progress & Rating</h3>
+            <div class="ui-grid">
+                <div class="asset-item">
+                    <svg viewBox="0 0 300 100">
+                        <use href="assets/images/ui-elements.svg#star-rating"/>
+                    </svg>
+                    <h3>Star Rating</h3>
+                    <p>Achievement display</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 400 100">
+                        <use href="assets/images/ui-elements.svg#progress-bar"/>
+                    </svg>
+                    <h3>Progress Bar</h3>
+                    <p>Quest completion</p>
+                </div>
+            </div>
+            
+            <h3 style="color: #8B5CF6;">Game Elements</h3>
+            <div class="ui-grid">
+                <div class="asset-item">
+                    <svg viewBox="0 0 150 180">
+                        <use href="assets/images/ui-elements.svg#inventory-bag"/>
+                    </svg>
+                    <h3>Inventory Bag</h3>
+                    <p>Magic items storage</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 100 100">
+                        <use href="assets/images/ui-elements.svg#hint-lightbulb"/>
+                    </svg>
+                    <h3>Hint System</h3>
+                    <p>Helpful guidance</p>
+                </div>
+            </div>
+            
+            <h3 style="color: #8B5CF6;">Puzzle Tiles</h3>
+            <div class="ui-grid">
+                <div class="asset-item">
+                    <svg viewBox="0 0 150 50">
+                        <use href="assets/images/ui-elements.svg#number-tiles"/>
+                    </svg>
+                    <h3>Number Tiles</h3>
+                    <p>Math puzzles</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 150 50">
+                        <use href="assets/images/ui-elements.svg#letter-tiles"/>
+                    </svg>
+                    <h3>Letter Tiles</h3>
+                    <p>Language puzzles</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 150 50">
+                        <use href="assets/images/ui-elements.svg#pattern-tiles"/>
+                    </svg>
+                    <h3>Pattern Tiles</h3>
+                    <p>Logic puzzles</p>
+                </div>
+            </div>
+            
+            <h3 style="color: #8B5CF6;">Educational Icons</h3>
+            <div class="ui-grid">
+                <div class="asset-item">
+                    <svg viewBox="0 0 60 80">
+                        <use href="assets/images/ui-elements.svg#math-icon"/>
+                    </svg>
+                    <h3>Math Icon</h3>
+                    <p>Mathematics</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 60 80">
+                        <use href="assets/images/ui-elements.svg#language-icon"/>
+                    </svg>
+                    <h3>Language Icon</h3>
+                    <p>Reading & Writing</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 60 80">
+                        <use href="assets/images/ui-elements.svg#science-icon"/>
+                    </svg>
+                    <h3>Science Icon</h3>
+                    <p>Discovery & Nature</p>
+                </div>
+                
+                <div class="asset-item">
+                    <svg viewBox="0 0 60 80">
+                        <use href="assets/images/ui-elements.svg#achievement-badge"/>
+                    </svg>
+                    <h3>Achievement</h3>
+                    <p>Success badge</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background: #F3E8FF; border-radius: 15px;">
+            <h3 style="color: #8B5CF6; margin-bottom: 10px;">🎨 Asset Features</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: white; padding: 15px; border-radius: 10px;">
+                    <strong style="color: #7C3AED;">🚀 Performance</strong><br>
+                    <small style="color: #6B7280;">Optimized SVG with inline embedding</small>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 10px;">
+                    <strong style="color: #7C3AED;">📱 Responsive</strong><br>
+                    <small style="color: #6B7280;">Scalable for all screen sizes</small>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 10px;">
+                    <strong style="color: #7C3AED;">✨ Animated</strong><br>
+                    <small style="color: #6B7280;">CSS animations & transitions</small>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 10px;">
+                    <strong style="color: #7C3AED;">♿ Accessible</strong><br>
+                    <small style="color: #6B7280;">Screen reader compatible</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-btn[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Add hover effects
+        document.querySelectorAll('.asset-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const svg = this.querySelector('svg');
+                if (svg) {
+                    svg.style.transform = 'scale(1.05)';
+                    svg.style.transition = 'transform 0.3s ease';
+                }
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const svg = this.querySelector('svg');
+                if (svg) {
+                    svg.style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

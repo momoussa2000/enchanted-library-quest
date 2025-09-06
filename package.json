@@ -1,0 +1,68 @@
+{
+  "name": "enchanted-library-quest",
+  "version": "1.0.0",
+  "description": "The Enchanted Library Quest - A magical educational adventure game by FableBox where children help restore order to an enchanted library while learning math, language arts, and science.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "start": "python3 -m http.server 8000",
+    "build": "echo 'Static site - no build needed'",
+    "test": "echo 'Tests not implemented yet'",
+    "lint": "echo 'Linting not configured'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "educational-game",
+    "children",
+    "learning",
+    "math",
+    "language-arts",
+    "science",
+    "accessibility",
+    "dyslexia-friendly",
+    "multilingual",
+    "offline-learning",
+    "progressive-web-app",
+    "pwa",
+    "fablebox",
+    "adventure-game",
+    "puzzle-game"
+  ],
+  "author": {
+    "name": "FableBox",
+    "email": "hello@fablebox.net",
+    "url": "https://fablebox.net"
+  },
+  "license": "Proprietary",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fablebox/enchanted-library-quest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fablebox/enchanted-library-quest/issues"
+  },
+  "homepage": "https://enchanted-library-quest.vercel.app",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "devDependencies": {},
+  "dependencies": {},
+  "peerDependencies": {},
+  "config": {
+    "target_age_range": "4-12",
+    "educational_standards": "Common Core aligned",
+    "accessibility_level": "WCAG 2.1 AA compliant",
+    "languages_supported": "9",
+    "offline_capable": true
+  },
+  "funding": {
+    "type": "commercial",
+    "url": "https://fablebox.net"
+  }
+}

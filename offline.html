@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Enchanted Library Quest - Offline</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #8B5CF6, #60A5FA);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .offline-container {
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .offline-title {
+            font-size: 2rem;
+            margin: 0 0 16px 0;
+            font-weight: bold;
+        }
+        
+        .offline-subtitle {
+            font-size: 1.1rem;
+            margin: 0 0 24px 0;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .offline-message {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .offline-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        
+        .offline-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .offline-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .offline-btn.primary {
+            background: rgba(52, 211, 153, 0.8);
+            border-color: rgba(52, 211, 153, 1);
+        }
+        
+        .offline-btn.primary:hover {
+            background: rgba(52, 211, 153, 1);
+        }
+        
+        .offline-features {
+            text-align: left;
+            margin: 24px 0;
+        }
+        
+        .offline-features h3 {
+            margin: 0 0 12px 0;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .offline-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .offline-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .offline-features li:before {
+            content: "✨";
+            font-size: 1.2rem;
+        }
+        
+        .connection-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #EF4444;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-indicator.online {
+            background: #10B981;
+            animation: none;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .powered-by {
+            margin-top: 32px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .powered-by a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+        }
+        
+        .powered-by a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            .offline-container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            .offline-title {
+                font-size: 1.5rem;
+            }
+            
+            .offline-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📚</div>
+        
+        <h1 class="offline-title">Adventure Continues Offline!</h1>
+        
+        <p class="offline-subtitle">
+            Don't worry, young scholar! Your magical library adventure is available even without internet connection.
+        </p>
+        
+        <div class="connection-status">
+            <div class="status-indicator" id="connection-indicator"></div>
+            <span id="connection-text">You're currently offline</span>
+        </div>
+        
+        <div class="offline-message">
+            <strong>✨ Good news!</strong> The Enchanted Library Quest works offline so you can continue learning anywhere, anytime. Your progress will be saved and synced when you're back online.
+        </div>
+        
+        <div class="offline-features">
+            <h3>🎮 What you can do offline:</h3>
+            <ul>
+                <li>Play all downloaded story paths</li>
+                <li>Solve math, language, and science puzzles</li>
+                <li>Earn stars and achievements</li>
+                <li>Track your learning progress</li>
+                <li>Access accessibility settings</li>
+                <li>Continue where you left off</li>
+            </ul>
+        </div>
+        
+        <div class="offline-actions">
+            <button class="offline-btn primary" onclick="tryConnectAndPlay()">
+                🚀 Try to Continue Adventure
+            </button>
+            
+            <button class="offline-btn" onclick="playOffline()">
+                📱 Play Offline Mode
+            </button>
+            
+            <button class="offline-btn" onclick="refreshPage()">
+                🔄 Check Connection Again
+            </button>
+        </div>
+        
+        <div class="powered-by">
+            <p>
+                Educational gaming by <a href="https://fablebox.net" target="_blank">FableBox</a><br>
+                Making learning magical for children everywhere
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Check connection status
+        function updateConnectionStatus() {
+            const indicator = document.getElementById('connection-indicator');
+            const text = document.getElementById('connection-text');
+            
+            if (navigator.onLine) {
+                indicator.classList.add('online');
+                text.textContent = 'Connected! You can access all features';
+            } else {
+                indicator.classList.remove('online');
+                text.textContent = 'You\'re currently offline';
+            }
+        }
+        
+        // Try to connect and play
+        async function tryConnectAndPlay() {
+            // Test connection with a simple fetch
+            try {
+                const response = await fetch('/', { method: 'HEAD', cache: 'no-cache' });
+                if (response.ok) {
+                    // Connection successful, redirect to main game
+                    window.location.href = '/';
+                } else {
+                    throw new Error('Connection failed');
+                }
+            } catch (error) {
+                // Still offline, show message
+                alert('Still offline! But don\'t worry - you can play in offline mode with all your downloaded content.');
+                playOffline();
+            }
+        }
+        
+        // Play in offline mode
+        function playOffline() {
+            // Try to load cached version of the main game
+            window.location.href = '/';
+        }
+        
+        // Refresh page
+        function refreshPage() {
+            window.location.reload();
+        }
+        
+        // Listen for connection changes
+        window.addEventListener('online', () => {
+            updateConnectionStatus();
+            setTimeout(() => {
+                if (confirm('🌟 You\'re back online! Would you like to sync your progress and continue your adventure?')) {
+                    window.location.href = '/';
+                }
+            }, 1000);
+        });
+        
+        window.addEventListener('offline', updateConnectionStatus);
+        
+        // Initial connection check
+        updateConnectionStatus();
+        
+        // Periodic connection check
+        setInterval(updateConnectionStatus, 5000);
+        
+        // Service worker communication
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', event => {
+                if (event.data.type === 'CACHE_UPDATED') {
+                    // Show notification that new content is available
+                    const notification = document.createElement('div');
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: rgba(52, 211, 153, 0.9);
+                        color: white;
+                        padding: 12px 24px;
+                        border-radius: 8px;
+                        font-weight: 600;
+                        z-index: 1000;
+                        animation: slideIn 0.3s ease-out;
+                    `;
+                    notification.textContent = '✨ New content available! Refresh to update.';
+                    
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 5000);
+                }
+            });
+        }
+        
+        // Analytics for offline usage (will sync when back online)
+        function trackOfflineUsage() {
+            const offlineData = {
+                event: 'offline_page_view',
+                timestamp: Date.now(),
+                userAgent: navigator.userAgent,
+                connectionType: navigator.connection ? navigator.connection.effectiveType : 'unknown'
+            };
+            
+            // Store for later sync
+            const stored = localStorage.getItem('offline_analytics') || '[]';
+            const analytics = JSON.parse(stored);
+            analytics.push(offlineData);
+            localStorage.setItem('offline_analytics', JSON.stringify(analytics));
+        }
+        
+        trackOfflineUsage();
+    </script>
+</body>
+</html>

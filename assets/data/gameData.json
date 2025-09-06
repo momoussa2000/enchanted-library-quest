@@ -1,0 +1,971 @@
+{
+  "gameInfo": {
+    "title": "The Enchanted Library Quest",
+    "version": "1.0.0",
+    "description": "An educational adventure game where children help restore order to a magical library",
+    "ageRange": "4-12 years",
+    "educationalStandards": {
+      "math": ["Basic arithmetic", "Number recognition", "Problem solving"],
+      "language": ["Vocabulary building", "Reading comprehension", "Phonics"],
+      "science": ["Nature awareness", "Weather patterns", "Animal classification"]
+    }
+  },
+  
+  "characters": {
+    "dragon": {
+      "id": "dragon",
+      "name": "Ruby the Dragon",
+      "description": "A friendly red dragon who loves collecting treasures and solving number puzzles",
+      "specialty": "Math Adventures",
+      "personality": "Enthusiastic and encouraging, always ready to help with counting and calculations",
+      "avatar": "dragon-avatar",
+      "emoji": "🐉",
+      "color": "#EF4444",
+      "dialogueStyle": "excited",
+      "catchphrases": [
+        "Let's count those treasures!",
+        "Numbers are like gems - beautiful and valuable!",
+        "Every problem has a magical solution!"
+      ]
+    },
+    
+    "wizard": {
+      "id": "wizard",
+      "name": "Sage the Wizard",
+      "description": "An ancient wizard who guards the library's word magic and spell books",
+      "specialty": "Language Quests",
+      "personality": "Wise and patient, speaks in riddles and loves wordplay",
+      "avatar": "wizard-avatar",
+      "emoji": "🧙‍♂️",
+      "color": "#8B5CF6",
+      "dialogueStyle": "mysterious",
+      "catchphrases": [
+        "Words have power beyond imagination!",
+        "Every story begins with a single word...",
+        "Let the magic of language guide you!"
+      ]
+    },
+    
+    "mouse": {
+      "id": "mouse",
+      "name": "Scout the Explorer",
+      "description": "A brave little mouse who has traveled the world and knows all about nature",
+      "specialty": "Science Explorations",
+      "personality": "Curious and adventurous, always asking 'why' and 'how'",
+      "avatar": "mouse-avatar",
+      "emoji": "🐭",
+      "color": "#34D399",
+      "dialogueStyle": "curious",
+      "catchphrases": [
+        "Let's explore and discover!",
+        "Nature has so many secrets to share!",
+        "Every question leads to an adventure!"
+      ]
+    }
+  },
+  
+  "difficultyLevels": {
+    "easy": {
+      "name": "Apprentice",
+      "ageRange": "4-6",
+      "description": "Perfect for young learners just starting their educational journey",
+      "modifiers": {
+        "puzzleComplexity": 0.7,
+        "hintAvailability": 0.9,
+        "timeLimit": null,
+        "skipPenalty": 0
+      }
+    },
+    
+    "medium": {
+      "name": "Scholar",
+      "ageRange": "7-9",
+      "description": "For students ready to tackle more challenging problems",
+      "modifiers": {
+        "puzzleComplexity": 1.0,
+        "hintAvailability": 0.7,
+        "timeLimit": 120,
+        "skipPenalty": 1
+      }
+    },
+    
+    "hard": {
+      "name": "Master",
+      "ageRange": "10-12",
+      "description": "Advanced challenges for experienced problem solvers",
+      "modifiers": {
+        "puzzleComplexity": 1.3,
+        "hintAvailability": 0.5,
+        "timeLimit": 90,
+        "skipPenalty": 2
+      }
+    }
+  },
+  
+  "storyPaths": {
+    "dragon": {
+      "id": "dragon_path",
+      "title": "Dragon's Lost Treasure",
+      "description": "Help Ruby the Dragon find her scattered treasure using math skills",
+      "character": "dragon",
+      "subject": "math",
+      "totalScenes": 6,
+      "estimatedTime": "15-20 minutes",
+      "learningObjectives": [
+        "Practice addition and subtraction",
+        "Understand number patterns",
+        "Develop problem-solving strategies"
+      ],
+      
+      "scenes": [
+        {
+          "id": "dragon_intro",
+          "title": "The Treasure Chamber",
+          "location": "Ruby's Treasure Cave",
+          "background": "treasure-cave",
+          "text": "Welcome to my magical treasure chamber! Oh no! A mischievous wind sprite has scattered all my precious gems throughout the library. Each treasure is hidden behind a number puzzle that only clever adventurers like you can solve!",
+          "characterDialogue": "Don't worry, together we can find all my treasures! Are you ready to use your counting skills?",
+          "type": "story",
+          "choices": [
+            {
+              "text": "Yes! Let's find those treasures!",
+              "nextScene": "dragon_puzzle1",
+              "mood": "excited"
+            },
+            {
+              "text": "Tell me more about the treasures first",
+              "nextScene": "dragon_treasure_info",
+              "mood": "curious"
+            }
+          ],
+          "backgroundMusic": "mystical_cave",
+          "animations": ["floating_gems", "sparkle_effects"]
+        },
+        
+        {
+          "id": "dragon_treasure_info",
+          "title": "About the Treasures",
+          "location": "Ruby's Treasure Cave",
+          "background": "treasure-cave",
+          "text": "Each treasure has special properties! The Ruby Gems help with addition, the Sapphire Stars teach subtraction, and the Golden Coins show us patterns. When we solve each puzzle correctly, the treasure will return to its rightful place!",
+          "characterDialogue": "The more puzzles we solve, the stronger our friendship becomes! Ready to start our treasure hunt?",
+          "type": "story",
+          "choices": [
+            {
+              "text": "Let's begin the treasure hunt!",
+              "nextScene": "dragon_puzzle1",
+              "mood": "excited"
+            }
+          ]
+        },
+        
+        {
+          "id": "dragon_puzzle1",
+          "title": "The Ruby Gem Addition",
+          "location": "Library's Math Section",
+          "background": "math-books",
+          "text": "Look! I can see one of my Ruby Gems glowing behind these number books. To unlock it, we need to solve this addition puzzle!",
+          "characterDialogue": "Remember, addition means bringing numbers together, just like how we're bringing my treasures back together!",
+          "type": "puzzle",
+          "puzzleId": "math_addition_1",
+          "successScene": "dragon_success1",
+          "failureScene": "dragon_hint1",
+          "maxAttempts": 3
+        },
+        
+        {
+          "id": "dragon_success1",
+          "title": "First Treasure Found!",
+          "location": "Library's Math Section",
+          "background": "math-books",
+          "text": "Wonderful! The Ruby Gem sparkles with joy as it flies back to my collection. You're getting the hang of this!",
+          "characterDialogue": "Excellent work! I can feel my treasure collection growing stronger. Let's find the next one!",
+          "type": "story",
+          "rewards": {
+            "stars": 2,
+            "treasureFound": "ruby_gem"
+          },
+          "choices": [
+            {
+              "text": "Continue to the next treasure",
+              "nextScene": "dragon_puzzle2",
+              "mood": "confident"
+            }
+          ]
+        },
+        
+        {
+          "id": "dragon_puzzle2",
+          "title": "The Sapphire Star Subtraction",
+          "location": "Library's Calculator Corner",
+          "background": "calculator-corner",
+          "text": "There's my beautiful Sapphire Star! It's hiding behind a subtraction puzzle. Subtraction is like treasure hunting in reverse - we start with more and find out how many we have left!",
+          "characterDialogue": "Take your time, brave adventurer. Sometimes we need to take away to find what truly remains!",
+          "type": "puzzle",
+          "puzzleId": "math_subtraction_1",
+          "successScene": "dragon_success2",
+          "failureScene": "dragon_hint2",
+          "maxAttempts": 3
+        },
+        
+        {
+          "id": "dragon_success2",
+          "title": "Second Treasure Retrieved!",
+          "location": "Library's Calculator Corner",
+          "background": "calculator-corner",
+          "text": "Amazing! The Sapphire Star twirls happily as it returns home. We're becoming quite the treasure-hunting team!",
+          "characterDialogue": "Two treasures down, one more to go! You're showing real mathematical magic!",
+          "type": "story",
+          "rewards": {
+            "stars": 2,
+            "treasureFound": "sapphire_star"
+          },
+          "choices": [
+            {
+              "text": "Let's find the final treasure!",
+              "nextScene": "dragon_puzzle3",
+              "mood": "determined"
+            }
+          ]
+        },
+        
+        {
+          "id": "dragon_puzzle3",
+          "title": "The Golden Coin Pattern",
+          "location": "Library's Pattern Palace",
+          "background": "pattern-palace",
+          "text": "My most precious Golden Coin is here! But it's protected by a number pattern puzzle. Patterns are like treasure maps - they show us the way forward!",
+          "characterDialogue": "Look carefully at the numbers. What comes next in this magical sequence? Trust your mathematical instincts!",
+          "type": "puzzle",
+          "puzzleId": "math_pattern_1",
+          "successScene": "dragon_finale",
+          "failureScene": "dragon_hint3",
+          "maxAttempts": 3
+        },
+        
+        {
+          "id": "dragon_finale",
+          "title": "All Treasures Restored!",
+          "location": "Ruby's Treasure Cave",
+          "background": "treasure-cave-complete",
+          "text": "Incredible! All my treasures have returned home, and they're more beautiful than ever. The treasure chamber is complete once again, thanks to your amazing mathematical skills!",
+          "characterDialogue": "You've proven yourself to be a true treasure hunter and mathematician! The library is safer because of your help. Thank you, brave friend!",
+          "type": "story",
+          "rewards": {
+            "stars": 3,
+            "completionBonus": 5,
+            "achievement": "dragon_master"
+          },
+          "choices": [
+            {
+              "text": "I'm glad I could help!",
+              "nextScene": "path_complete",
+              "mood": "proud"
+            }
+          ]
+        }
+      ]
+    },
+    
+    "wizard": {
+      "id": "wizard_path",
+      "title": "Wizard's Spell Book",
+      "description": "Help Sage the Wizard restore the magical spell book using language skills",
+      "character": "wizard",
+      "subject": "language",
+      "totalScenes": 6,
+      "estimatedTime": "15-20 minutes",
+      "learningObjectives": [
+        "Improve vocabulary and word recognition",
+        "Practice rhyming and phonics",
+        "Develop reading comprehension"
+      ],
+      
+      "scenes": [
+        {
+          "id": "wizard_intro",
+          "title": "The Spell Chamber",
+          "location": "Sage's Mystical Study",
+          "background": "wizard-study",
+          "text": "Welcome to my ancient study, young scholar! A terrible mix-up has scrambled all the words in my most important spell book. Without the proper words in their rightful places, the magic cannot flow through the library!",
+          "characterDialogue": "Fear not! With your command of language and words, we can restore the ancient magic. Each word puzzle will bring us closer to completing the spell!",
+          "type": "story",
+          "choices": [
+            {
+              "text": "I'm ready to help with the spell book!",
+              "nextScene": "wizard_puzzle1",
+              "mood": "eager"
+            },
+            {
+              "text": "What kind of magic is in the book?",
+              "nextScene": "wizard_magic_info",
+              "mood": "curious"
+            }
+          ]
+        },
+        
+        {
+          "id": "wizard_magic_info",
+          "title": "The Power of Words",
+          "location": "Sage's Mystical Study",
+          "background": "wizard-study",
+          "text": "This spell book contains the magic of language itself! There are rhyming spells that make stories flow like music, vocabulary enchantments that help readers understand any tale, and sentence spells that bring order to scattered thoughts.",
+          "characterDialogue": "Words are the most powerful magic of all, dear student. They can transport us anywhere, teach us anything, and connect us to others across time and space!",
+          "type": "story",
+          "choices": [
+            {
+              "text": "Let's restore the magic of words!",
+              "nextScene": "wizard_puzzle1",
+              "mood": "inspired"
+            }
+          ]
+        },
+        
+        {
+          "id": "wizard_puzzle1",
+          "title": "The Rhyming Spell",
+          "location": "Poetry Alcove",
+          "background": "poetry-books",
+          "text": "Behold! The first page of my spell book glows with rhyming magic. But the words have lost their partners! We must find the words that sound alike to restore the rhyming spell.",
+          "characterDialogue": "Listen with your heart, young scholar. Rhyming words dance together like old friends. Can you hear their musical connection?",
+          "type": "puzzle",
+          "puzzleId": "language_rhyming_1",
+          "successScene": "wizard_success1",
+          "failureScene": "wizard_hint1",
+          "maxAttempts": 3
+        },
+        
+        {
+          "id": "wizard_success1",
+          "title": "First Spell Restored!",
+          "location": "Poetry Alcove",
+          "background": "poetry-books",
+          "text": "Magnificent! The rhyming spell sparkles back to life, and I can hear the melody of matching words filling the air. The first page of my spell book glows with renewed magic!",
+          "characterDialogue": "Wonderful work! Your ear for language is truly magical. Now, let us continue to the next page of mysteries!",
+          "type": "story",
+          "rewards": {
+            "stars": 2,
+            "spellRestored": "rhyming_magic"
+          },
+          "choices": [
+            {
+              "text": "What's on the next page?",
+              "nextScene": "wizard_puzzle2",
+              "mood": "curious"
+            }
+          ]
+        },
+        
+        {
+          "id": "wizard_puzzle2",
+          "title": "The Vocabulary Enchantment",
+          "location": "Dictionary Hall",
+          "background": "dictionary-hall",
+          "text": "Ah, here we find the vocabulary enchantment! Words have lost their meanings and are floating about in confusion. We must match each word with its proper meaning to restore order.",
+          "characterDialogue": "Knowledge of words is like having a treasure map to understanding. Each word you know opens new doors to wisdom and wonder!",
+          "type": "puzzle",
+          "puzzleId": "language_vocabulary_1",
+          "successScene": "wizard_success2",
+          "failureScene": "wizard_hint2",
+          "maxAttempts": 3
+        },
+        
+        {
+          "id": "wizard_success2",
+          "title": "Vocabulary Magic Flows!",
+          "location": "Dictionary Hall",
+          "background": "dictionary-hall",
+          "text": "Excellent! The words have found their meanings once more, and understanding flows through the library like a gentle stream. Knowledge is power, and you wield it well!",
+          "characterDialogue": "Your vocabulary grows stronger with each success! Now, for the final and most challenging spell of all!",
+          "type": "story",
+          "rewards": {
+            "stars": 2,
+            "spellRestored": "vocabulary_magic"
+          },
+          "choices": [
+            {
+              "text": "I'm ready for the final challenge!",
+              "nextScene": "wizard_puzzle3",
+              "mood": "confident"
+            }
+          ]
+        },
+        
+        {
+          "id": "wizard_puzzle3",
+          "title": "The Sentence Spell",
+          "location": "Grammar Gardens",
+          "background": "grammar-garden",
+          "text": "Here lies the most complex magic of all - the sentence spell! Words have scattered and lost their proper order. Only by arranging them correctly can we complete the final enchantment.",
+          "characterDialogue": "Remember, young scholar, sentences are like magic formulas. Each word must be in exactly the right place for the spell to work perfectly!",
+          "type": "puzzle",
+          "puzzleId": "language_sentences_1",
+          "successScene": "wizard_finale",
+          "failureScene": "wizard_hint3",
+          "maxAttempts": 3
+        },
+        
+        {
+          "id": "wizard_finale",
+          "title": "The Spell Book Complete!",
+          "location": "Sage's Mystical Study",
+          "background": "wizard-study-complete",
+          "text": "Marvelous! The spell book is complete once more, and magical energy flows through every page. The library's language magic has been restored to its full power, thanks to your exceptional skills with words!",
+          "characterDialogue": "You have proven yourself a true master of language magic! The words themselves sing your praises. The library - and all who read within it - are in your debt!",
+          "type": "story",
+          "rewards": {
+            "stars": 3,
+            "completionBonus": 5,
+            "achievement": "word_wizard"
+          },
+          "choices": [
+            {
+              "text": "Thank you for teaching me about word magic!",
+              "nextScene": "path_complete",
+              "mood": "grateful"
+            }
+          ]
+        }
+      ]
+    },
+    
+    "mouse": {
+      "id": "mouse_path",
+      "title": "Explorer's Map",
+      "description": "Help Scout the Explorer restore the magical map using science knowledge",
+      "character": "mouse",
+      "subject": "science",
+      "totalScenes": 6,
+      "estimatedTime": "15-20 minutes",
+      "learningObjectives": [
+        "Learn about weather patterns and seasons",
+        "Understand animal habitats and behaviors",
+        "Explore basic geography concepts"
+      ],
+      
+      "scenes": [
+        {
+          "id": "mouse_intro",
+          "title": "The Explorer's Den",
+          "location": "Scout's Adventure Corner",
+          "background": "explorer-den",
+          "text": "Welcome to my cozy den, fellow explorer! I have the most wonderful magical map that shows all the amazing places I've discovered in my travels. But oh dear! A storm has washed away all the important details. Without these details, other young explorers won't know what to expect on their adventures!",
+          "characterDialogue": "But don't worry! With your knowledge of the natural world, we can restore every detail. Each science puzzle will bring back a piece of the map's magic!",
+          "type": "story",
+          "choices": [
+            {
+              "text": "Let's restore your adventure map!",
+              "nextScene": "mouse_puzzle1",
+              "mood": "adventurous"
+            },
+            {
+              "text": "What kinds of places are on the map?",
+              "nextScene": "mouse_map_info",
+              "mood": "curious"
+            }
+          ]
+        },
+        
+        {
+          "id": "mouse_map_info",
+          "title": "Adventures Await",
+          "location": "Scout's Adventure Corner",
+          "background": "explorer-den",
+          "text": "Oh, the places I've been! There are snowy mountains where polar bears play, sunny deserts where camels travel, rainy forests where colorful birds sing, and peaceful meadows where rabbits hop about. Each place has its own weather, animals, and special features!",
+          "characterDialogue": "The map helps young explorers know what to pack, which animals they might meet, and what weather to expect. Science makes every adventure safer and more fun!",
+          "type": "story",
+          "choices": [
+            {
+              "text": "Let's bring back all these amazing places!",
+              "nextScene": "mouse_puzzle1",
+              "mood": "excited"
+            }
+          ]
+        },
+        
+        {
+          "id": "mouse_puzzle1",
+          "title": "Weather Patterns Mystery",
+          "location": "Climate Corner",
+          "background": "weather-station",
+          "text": "Look here! This section of the map shows different weather patterns, but they've all gotten mixed up! We need to match each type of weather with the right season to help future explorers pack correctly.",
+          "characterDialogue": "Think about what weather you see outside during different times of the year. Each season has its own special weather personality!",
+          "type": "puzzle",
+          "puzzleId": "science_weather_1",
+          "successScene": "mouse_success1",
+          "failureScene": "mouse_hint1",
+          "maxAttempts": 3
+        },
+        
+        {
+          "id": "mouse_success1",
+          "title": "Weather Restored!",
+          "location": "Climate Corner",
+          "background": "weather-station",
+          "text": "Perfect! The weather patterns are back in their proper places on the map. Now explorers will know to bring warm coats in winter and sunscreen in summer!",
+          "characterDialogue": "Excellent observation skills! Understanding weather helps keep every adventure safe and comfortable. Let's restore the next section!",
+          "type": "story",
+          "rewards": {
+            "stars": 2,
+            "mapSection": "weather_patterns"
+          },
+          "choices": [
+            {
+              "text": "What's the next part of the map?",
+              "nextScene": "mouse_puzzle2",
+              "mood": "eager"
+            }
+          ]
+        },
+        
+        {
+          "id": "mouse_puzzle2",
+          "title": "Animal Habitat Challenge",
+          "location": "Wildlife Observatory",
+          "background": "animal-habitats",
+          "text": "Oh my! All the animals on the map have wandered away from their homes! We need to help each animal find their proper habitat. Animals are happiest when they live where they belong.",
+          "characterDialogue": "Think about where each animal would be most comfortable. Do they like hot places or cold? Wet or dry? Every creature has a perfect home in nature!",
+          "type": "puzzle",
+          "puzzleId": "science_animals_1",
+          "successScene": "mouse_success2",
+          "failureScene": "mouse_hint2",
+          "maxAttempts": 3
+        },
+        
+        {
+          "id": "mouse_success2",
+          "title": "Animals Back Home!",
+          "location": "Wildlife Observatory",
+          "background": "animal-habitats",
+          "text": "Wonderful! Every animal has found their way back to their perfect habitat. The polar bears are happy in the cold, the camels are content in the desert, and the fish are swimming joyfully in the water!",
+          "characterDialogue": "You really understand how animals and their environments work together! Now for the final piece of our map puzzle!",
+          "type": "story",
+          "rewards": {
+            "stars": 2,
+            "mapSection": "animal_habitats"
+          },
+          "choices": [
+            {
+              "text": "Let's complete the map!",
+              "nextScene": "mouse_puzzle3",
+              "mood": "determined"
+            }
+          ]
+        },
+        
+        {
+          "id": "mouse_puzzle3",
+          "title": "Geography Adventure",
+          "location": "Terrain Territory",
+          "background": "geography-station",
+          "text": "The final challenge! The geographical features of our world have disappeared from the map. We need to identify different landforms and water bodies to complete our explorer's guide.",
+          "characterDialogue": "From tall mountains to deep oceans, our Earth has so many amazing features! Each one creates different adventures and homes for different creatures. Can you identify them all?",
+          "type": "puzzle",
+          "puzzleId": "science_geography_1",
+          "successScene": "mouse_finale",
+          "failureScene": "mouse_hint3",
+          "maxAttempts": 3
+        },
+        
+        {
+          "id": "mouse_finale",
+          "title": "The Complete Explorer's Map!",
+          "location": "Scout's Adventure Corner",
+          "background": "explorer-den-complete",
+          "text": "Incredible! The map is more beautiful and detailed than ever before! Thanks to your scientific knowledge, future young explorers will have all the information they need for safe and exciting adventures around the world!",
+          "characterDialogue": "You've shown yourself to be a true scientist and explorer! Your curiosity and knowledge have saved the day. The library's science section glows with pride because of your achievements!",
+          "type": "story",
+          "rewards": {
+            "stars": 3,
+            "completionBonus": 5,
+            "achievement": "science_explorer"
+          },
+          "choices": [
+            {
+              "text": "Thank you for the amazing adventure!",
+              "nextScene": "path_complete",
+              "mood": "accomplished"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  
+  "puzzles": {
+    "math_addition_1": {
+      "id": "math_addition_1",
+      "type": "math",
+      "subtype": "addition",
+      "title": "Ruby Gem Addition",
+      "description": "Help Ruby count her scattered gems",
+      "difficulty": {
+        "easy": {
+          "question": "Ruby found 3 red gems and 2 blue gems. How many gems did she find in total?",
+          "visual": "gem_counter",
+          "options": [4, 5, 6, 7],
+          "answer": 5,
+          "hint": "Count all the gems together: 3 red gems + 2 blue gems = ?",
+          "explanation": "When we add 3 + 2, we get 5 gems total!"
+        },
+        "medium": {
+          "question": "Ruby's treasure chest had 7 gems. She found 4 more gems today. How many gems does she have now?",
+          "visual": "treasure_chest",
+          "options": [10, 11, 12, 13],
+          "answer": 11,
+          "hint": "Start with 7 gems and add 4 more: 7 + 4 = ?",
+          "explanation": "7 + 4 = 11. Ruby now has 11 sparkling gems!"
+        },
+        "hard": {
+          "question": "Ruby collected gems for 3 days. Day 1: 8 gems, Day 2: 6 gems, Day 3: 5 gems. How many gems did she collect in total?",
+          "visual": "daily_collection",
+          "inputType": "number",
+          "answer": 19,
+          "hint": "Add all three days together: 8 + 6 + 5 = ?",
+          "explanation": "8 + 6 + 5 = 19. Ruby collected 19 gems over three days!"
+        }
+      },
+      "educationalNotes": "Addition helps children understand the concept of combining quantities. Visual representations with gems make abstract numbers concrete and engaging."
+    },
+    
+    "math_subtraction_1": {
+      "id": "math_subtraction_1",
+      "type": "math",
+      "subtype": "subtraction",
+      "title": "Sapphire Star Subtraction",
+      "description": "Help Ruby organize her remaining treasures",
+      "difficulty": {
+        "easy": {
+          "question": "Ruby had 8 stars. She gave 3 stars to her friend. How many stars does she have left?",
+          "visual": "star_counter",
+          "options": [4, 5, 6, 7],
+          "answer": 5,
+          "hint": "Start with 8 stars and take away 3: 8 - 3 = ?",
+          "explanation": "8 - 3 = 5. Ruby has 5 stars remaining!"
+        },
+        "medium": {
+          "question": "Ruby's star collection had 15 stars. After sharing some with library visitors, she has 9 stars left. How many stars did she share?",
+          "visual": "sharing_stars",
+          "options": [5, 6, 7, 8],
+          "answer": 6,
+          "hint": "What number plus 9 equals 15? Or think: 15 - 9 = ?",
+          "explanation": "15 - 9 = 6. Ruby shared 6 stars with visitors!"
+        },
+        "hard": {
+          "question": "Ruby had 24 stars. She used 7 stars for magic spells and gave away 8 stars. How many stars does she have left?",
+          "visual": "magic_calculation",
+          "inputType": "number",
+          "answer": 9,
+          "hint": "First subtract 7, then subtract 8 more: 24 - 7 - 8 = ?",
+          "explanation": "24 - 7 - 8 = 9. Ruby has 9 stars remaining after magic and sharing!"
+        }
+      },
+      "educationalNotes": "Subtraction teaches children about removing quantities and finding differences. Real-world contexts like sharing help make the concept meaningful."
+    },
+    
+    "math_pattern_1": {
+      "id": "math_pattern_1",
+      "type": "math",
+      "subtype": "patterns",
+      "title": "Golden Coin Pattern",
+      "description": "Discover the pattern in Ruby's coin collection",
+      "difficulty": {
+        "easy": {
+          "question": "Ruby arranges her coins in a pattern: 2, 4, 6, 8, ?. What number comes next?",
+          "visual": "coin_pattern",
+          "options": [9, 10, 11, 12],
+          "answer": 10,
+          "hint": "Look at how much each number increases. What do you add each time?",
+          "explanation": "The pattern adds 2 each time: 2, 4, 6, 8, 10!"
+        },
+        "medium": {
+          "question": "Ruby's magical coins follow this pattern: 3, 6, 9, 12, 15, ?. What's the next number?",
+          "visual": "magic_coin_pattern",
+          "options": [17, 18, 19, 20],
+          "answer": 18,
+          "hint": "This pattern counts by 3s. What comes after 15?",
+          "explanation": "Counting by 3s: 3, 6, 9, 12, 15, 18!"
+        },
+        "hard": {
+          "question": "Ruby's special pattern: 1, 4, 7, 10, 13, ?. Find the next two numbers in the sequence.",
+          "visual": "advanced_pattern",
+          "inputType": "text",
+          "answer": "16, 19",
+          "hint": "Each number increases by 3. Continue the pattern for two more numbers.",
+          "explanation": "The pattern adds 3 each time: 1, 4, 7, 10, 13, 16, 19!"
+        }
+      },
+      "educationalNotes": "Pattern recognition develops logical thinking and prepares children for algebra. Patterns help children predict and understand mathematical relationships."
+    },
+    
+    "language_rhyming_1": {
+      "id": "language_rhyming_1",
+      "type": "language",
+      "subtype": "rhyming",
+      "title": "Magical Rhyming Spell",
+      "description": "Match rhyming words to restore the spell",
+      "difficulty": {
+        "easy": {
+          "question": "Which word rhymes with 'cat'?",
+          "visual": "rhyming_animals",
+          "options": ["dog", "hat", "bird", "fish"],
+          "answer": "hat",
+          "hint": "Listen to the ending sounds. Which word sounds like 'cat' at the end?",
+          "explanation": "Cat and hat both end with the '-at' sound!"
+        },
+        "medium": {
+          "question": "Complete this magical rhyme: 'The wise old owl sits in the tree, As happy and content as can ___'",
+          "visual": "owl_in_tree",
+          "options": ["be", "fly", "see", "high"],
+          "answer": "be",
+          "hint": "What word would rhyme with 'tree' and make sense in the sentence?",
+          "explanation": "'Be' rhymes with 'tree' and completes the magical rhyme!"
+        },
+        "hard": {
+          "question": "Find all the rhyming pairs from these magic words: moon, star, soon, far, bright, night",
+          "visual": "night_sky",
+          "inputType": "matching",
+          "answer": [["moon", "soon"], ["star", "far"], ["bright", "night"]],
+          "hint": "Listen carefully to the ending sounds of each word.",
+          "explanation": "Moon/soon, star/far, and bright/night all have matching ending sounds!"
+        }
+      },
+      "educationalNotes": "Rhyming develops phonological awareness, which is crucial for reading development. It helps children recognize sound patterns in language."
+    },
+    
+    "language_vocabulary_1": {
+      "id": "language_vocabulary_1",
+      "type": "language",
+      "subtype": "vocabulary",
+      "title": "Word Meaning Magic",
+      "description": "Match words with their magical meanings",
+      "difficulty": {
+        "easy": {
+          "question": "What does 'gigantic' mean?",
+          "visual": "size_comparison",
+          "options": ["very small", "very big", "very fast", "very slow"],
+          "answer": "very big",
+          "hint": "Think about giants. How big are they?",
+          "explanation": "Gigantic means very, very big - like a giant!"
+        },
+        "medium": {
+          "question": "A 'mysterious' thing is something that is:",
+          "visual": "mystery_box",
+          "options": ["easy to understand", "hard to understand", "very colorful", "very loud"],
+          "answer": "hard to understand",
+          "hint": "Think about mysteries. Are they easy to solve or puzzling?",
+          "explanation": "Mysterious means puzzling or hard to understand - like a mystery!"
+        },
+        "hard": {
+          "question": "Match these advanced words with their meanings: Magnificent, Peculiar, Tremendous, Delicate",
+          "visual": "word_meanings",
+          "inputType": "matching",
+          "answer": {
+            "Magnificent": "splendid and impressive",
+            "Peculiar": "strange or unusual",
+            "Tremendous": "extremely large or great",
+            "Delicate": "easily broken or damaged"
+          },
+          "hint": "Think about the context where you might hear each word used.",
+          "explanation": "Each word has a unique meaning that adds richness to our language!"
+        }
+      },
+      "educationalNotes": "Vocabulary building enhances comprehension and expression. Context and visual cues help children remember new words more effectively."
+    },
+    
+    "language_sentences_1": {
+      "id": "language_sentences_1",
+      "type": "language",
+      "subtype": "sentences",
+      "title": "Sentence Structure Spell",
+      "description": "Arrange words to create magical sentences",
+      "difficulty": {
+        "easy": {
+          "question": "Put these words in the right order: 'book magic the reads wizard'",
+          "visual": "sentence_builder",
+          "inputType": "ordering",
+          "answer": ["The", "wizard", "reads", "magic", "book"],
+          "hint": "Who is doing the action? What are they doing? What are they doing it to?",
+          "explanation": "The correct order is: 'The wizard reads magic book' - subject, verb, object!"
+        },
+        "medium": {
+          "question": "Arrange these words to make a complete sentence: 'library quiet the in children read'",
+          "visual": "library_scene",
+          "inputType": "ordering",
+          "answer": ["Children", "read", "in", "the", "quiet", "library"],
+          "hint": "Start with who is doing the action, then what they're doing, then where.",
+          "explanation": "'Children read in the quiet library' - this sentence tells us who, what, and where!"
+        },
+        "hard": {
+          "question": "Create a complex sentence using all these words: 'Although', 'dragon', 'friendly', 'treasure', 'guards', 'carefully'",
+          "visual": "complex_sentence",
+          "inputType": "text",
+          "answer": "Although the dragon is friendly, it guards its treasure carefully",
+          "hint": "Start with 'Although' to show contrast, then build your sentence with the remaining words.",
+          "explanation": "Complex sentences use connecting words like 'although' to join ideas together!"
+        }
+      },
+      "educationalNotes": "Sentence structure understanding improves both reading comprehension and writing skills. Visual word arrangement helps children see grammar patterns."
+    },
+    
+    "science_weather_1": {
+      "id": "science_weather_1",
+      "type": "science",
+      "subtype": "weather",
+      "title": "Weather Pattern Adventure",
+      "description": "Match weather with the right seasons",
+      "difficulty": {
+        "easy": {
+          "question": "What weather do we usually see in winter?",
+          "visual": "seasonal_weather",
+          "options": ["snow and cold", "flowers blooming", "very hot sun", "leaves falling"],
+          "answer": "snow and cold",
+          "hint": "Think about when you need to wear warm coats and see your breath in the air.",
+          "explanation": "Winter brings cold temperatures and often snow in many places!"
+        },
+        "medium": {
+          "question": "Match each season with its typical weather: Spring, Summer, Fall, Winter",
+          "visual": "four_seasons",
+          "inputType": "matching",
+          "answer": {
+            "Spring": "flowers bloom, mild temperatures",
+            "Summer": "hot and sunny",
+            "Fall": "leaves change color, cooler",
+            "Winter": "cold, snow and ice"
+          },
+          "hint": "Think about what happens to plants and temperature in each season.",
+          "explanation": "Each season has its own special weather patterns that help plants and animals!"
+        },
+        "hard": {
+          "question": "Explain why we have different seasons and weather patterns throughout the year.",
+          "visual": "earth_seasons",
+          "inputType": "text",
+          "answer": "Earth tilts as it orbits the sun, creating different seasons",
+          "hint": "Think about how Earth moves around the sun and how that affects sunlight.",
+          "explanation": "Earth's tilt and orbit around the sun creates our changing seasons and weather!"
+        }
+      },
+      "educationalNotes": "Weather and seasons help children understand natural cycles and develop observation skills about their environment."
+    },
+    
+    "science_animals_1": {
+      "id": "science_animals_1",
+      "type": "science",
+      "subtype": "animals",
+      "title": "Animal Habitat Challenge",
+      "description": "Help animals find their perfect homes",
+      "difficulty": {
+        "easy": {
+          "question": "Where do polar bears live?",
+          "visual": "animal_homes",
+          "options": ["hot desert", "cold Arctic", "tropical jungle", "grassy plains"],
+          "answer": "cold Arctic",
+          "hint": "Think about where it's cold and snowy, perfect for bears with thick fur.",
+          "explanation": "Polar bears live in the cold Arctic where their thick fur keeps them warm!"
+        },
+        "medium": {
+          "question": "Match each animal with its habitat: Camel, Fish, Monkey, Penguin",
+          "visual": "habitat_matching",
+          "inputType": "matching",
+          "answer": {
+            "Camel": "desert",
+            "Fish": "ocean or river",
+            "Monkey": "jungle or forest",
+            "Penguin": "cold, icy places"
+          },
+          "hint": "Think about what each animal needs to survive - temperature, food, and shelter.",
+          "explanation": "Each animal has evolved to live perfectly in their special habitat!"
+        },
+        "hard": {
+          "question": "Why do different animals live in different habitats? Explain with examples.",
+          "visual": "adaptation_examples",
+          "inputType": "text",
+          "answer": "Animals adapt to their environment for food, shelter, and survival",
+          "hint": "Think about how animals' bodies and behaviors help them survive where they live.",
+          "explanation": "Animals evolve special features that help them survive in their specific habitats!"
+        }
+      },
+      "educationalNotes": "Learning about animal habitats develops understanding of adaptation and helps children appreciate biodiversity and environmental relationships."
+    },
+    
+    "science_geography_1": {
+      "id": "science_geography_1",
+      "type": "science",
+      "subtype": "geography",
+      "title": "Landforms and Water Bodies",
+      "description": "Identify Earth's amazing geographical features",
+      "difficulty": {
+        "easy": {
+          "question": "What is a mountain?",
+          "visual": "landform_types",
+          "options": ["a very tall hill", "a body of water", "a flat area", "a deep hole"],
+          "answer": "a very tall hill",
+          "hint": "Think about the tallest land formations you can see. They reach up toward the sky.",
+          "explanation": "Mountains are very tall landforms that rise high above the surrounding land!"
+        },
+        "medium": {
+          "question": "Match each geographical feature: Mountain, River, Desert, Ocean",
+          "visual": "geography_features",
+          "inputType": "matching",
+          "answer": {
+            "Mountain": "tall rocky landform",
+            "River": "flowing water to the sea",
+            "Desert": "very dry sandy area",
+            "Ocean": "huge body of salt water"
+          },
+          "hint": "Think about the key characteristics that make each feature unique.",
+          "explanation": "Earth has many different geographical features, each with special characteristics!"
+        },
+        "hard": {
+          "question": "How do mountains, rivers, and oceans affect the climate and life in different regions?",
+          "visual": "climate_geography",
+          "inputType": "text",
+          "answer": "Geography affects weather patterns, water supply, and what plants and animals can live there",
+          "hint": "Think about how tall mountains might change weather, or how oceans affect temperature.",
+          "explanation": "Geography shapes climate, which determines what life can thrive in each region!"
+        }
+      },
+      "educationalNotes": "Geography knowledge helps children understand how physical features shape weather, climate, and human settlement patterns."
+    }
+  },
+  
+  "achievements": {
+    "dragon_master": {
+      "id": "dragon_master",
+      "title": "Dragon's Mathematical Treasure Hunter",
+      "description": "Completed all math challenges with Ruby the Dragon",
+      "icon": "🐉",
+      "rewardStars": 5
+    },
+    "word_wizard": {
+      "id": "word_wizard",
+      "title": "Master of Word Magic",
+      "description": "Restored all language spells with Sage the Wizard",
+      "icon": "🧙‍♂️",
+      "rewardStars": 5
+    },
+    "science_explorer": {
+      "id": "science_explorer",
+      "title": "Expert Science Explorer",
+      "description": "Completed the adventure map with Scout the Explorer",
+      "icon": "🐭",
+      "rewardStars": 5
+    },
+    "library_hero": {
+      "id": "library_hero",
+      "title": "Hero of the Enchanted Library",
+      "description": "Completed all three adventure paths",
+      "icon": "🏆",
+      "rewardStars": 10
+    }
+  },
+  
+  "settings": {
+    "autoSave": true,
+    "soundEffects": true,
+    "backgroundMusic": true,
+    "animations": true,
+    "accessibilityMode": false,
+    "parentalNotifications": false
+  }
+}

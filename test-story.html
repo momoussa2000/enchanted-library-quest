@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Content Test - Enchanted Library Quest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #8B5CF6, #60A5FA);
+            color: #1F2937;
+        }
+        .scene {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .scene-id {
+            color: #8B5CF6;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .scene-type {
+            background: #FCD34D;
+            color: #92400E;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .scene-text {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .choices {
+            background: #F3F4F6;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .choice {
+            display: block;
+            margin: 5px 0;
+            color: #059669;
+        }
+        .puzzle {
+            background: #FEF3C7;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        select {
+            padding: 5px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <label for="sceneSelect">Jump to scene:</label>
+        <select id="sceneSelect" onchange="showScene(this.value)">
+            <option value="">Select a scene...</option>
+        </select>
+    </div>
+
+    <h1>🏰 The Enchanted Library Quest - Story Content Test</h1>
+    <p>This page displays all the story scenes to verify the content structure.</p>
+    
+    <div id="storyContent"></div>
+
+    <script src="js/scenes.js"></script>
+    <script>
+        function displayAllScenes() {
+            const container = document.getElementById('storyContent');
+            const select = document.getElementById('sceneSelect');
+            
+            container.innerHTML = '';
+            
+            for (const [sceneId, scene] of Object.entries(STORY_SCENES)) {
+                // Add to dropdown
+                const option = document.createElement('option');
+                option.value = sceneId;
+                option.textContent = `${sceneId} (${scene.type})`;
+                select.appendChild(option);
+                
+                // Create scene display
+                const sceneDiv = document.createElement('div');
+                sceneDiv.className = 'scene';
+                sceneDiv.id = `scene-${sceneId}`;
+                
+                let html = `
+                    <div class="scene-id">${sceneId}</div>
+                    <div class="scene-type">${scene.type}</div>
+                    <div class="scene-text">${scene.text}</div>
+                `;
+                
+                if (scene.choices && scene.choices.length > 0) {
+                    html += '<div class="choices"><strong>Choices:</strong>';
+                    scene.choices.forEach(choice => {
+                        html += `<div class="choice">→ ${choice.text} (next: ${choice.next || choice.nextScene})</div>`;
+                    });
+                    html += '</div>';
+                }
+                
+                if (scene.puzzle) {
+                    html += `
+                        <div class="puzzle">
+                            <strong>Puzzle:</strong> ${scene.puzzle.question}<br>
+                            <strong>Answer:</strong> ${scene.puzzle.answer}<br>
+                            <strong>Hint:</strong> ${scene.puzzle.hint}
+                        </div>
+                    `;
+                }
+                
+                if (scene.background) {
+                    html += `<div><strong>Background:</strong> ${scene.background}</div>`;
+                }
+                
+                if (scene.character) {
+                    html += `<div><strong>Character:</strong> ${scene.character}</div>`;
+                }
+                
+                sceneDiv.innerHTML = html;
+                container.appendChild(sceneDiv);
+            }
+        }
+        
+        function showScene(sceneId) {
+            if (!sceneId) return;
+            
+            // Hide all scenes
+            document.querySelectorAll('.scene').forEach(scene => {
+                scene.style.display = 'none';
+            });
+            
+            // Show selected scene
+            const targetScene = document.getElementById(`scene-${sceneId}`);
+            if (targetScene) {
+                targetScene.style.display = 'block';
+                targetScene.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function showAllScenes() {
+            document.querySelectorAll('.scene').forEach(scene => {
+                scene.style.display = 'block';
+            });
+            document.getElementById('sceneSelect').value = '';
+        }
+        
+        // Initialize
+        displayAllScenes();
+        
+        // Add show all button
+        const nav = document.querySelector('.nav');
+        const showAllBtn = document.createElement('button');
+        showAllBtn.textContent = 'Show All';
+        showAllBtn.onclick = showAllScenes;
+        showAllBtn.style.marginLeft = '10px';
+        nav.appendChild(showAllBtn);
+    </script>
+</body>
+</html>

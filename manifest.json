@@ -1,0 +1,216 @@
+{
+  "name": "The Enchanted Library Quest",
+  "short_name": "Enchanted Library",
+  "description": "A magical educational adventure game by FableBox where children help restore order to an enchanted library while learning math, language arts, and science.",
+  "version": "1.0.0",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#8B5CF6",
+  "background_color": "#FFFFFF",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  
+  "icons": [
+    {
+      "src": "/assets/images/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  
+  "screenshots": [
+    {
+      "src": "/assets/images/screenshot-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Main game interface with character selection"
+    },
+    {
+      "src": "/assets/images/screenshot-2.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Educational puzzle solving on mobile"
+    },
+    {
+      "src": "/assets/images/screenshot-3.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Parent dashboard with learning analytics"
+    }
+  ],
+  
+  "categories": [
+    "education",
+    "games",
+    "kids",
+    "entertainment"
+  ],
+  
+  "iarc_rating_id": "e58c174a-81d2-5c3c-32cc-34b8de4a52e9",
+  
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://fablebox.net/games/enchanted-library"
+    }
+  ],
+  
+  "prefer_related_applications": false,
+  
+  "shortcuts": [
+    {
+      "name": "Start New Adventure",
+      "short_name": "New Game",
+      "description": "Begin a new magical learning adventure",
+      "url": "/new-game",
+      "icons": [
+        {
+          "src": "/assets/images/shortcut-new.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Continue Learning",
+      "short_name": "Continue",
+      "description": "Continue your current adventure",
+      "url": "/continue",
+      "icons": [
+        {
+          "src": "/assets/images/shortcut-continue.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Parent Dashboard",
+      "short_name": "Dashboard",
+      "description": "View learning progress and insights",
+      "url": "/parent-dashboard",
+      "icons": [
+        {
+          "src": "/assets/images/shortcut-dashboard.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  
+  "handle_links": "preferred",
+  
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
+  
+  "protocol_handlers": [
+    {
+      "protocol": "web+enchantedlibrary",
+      "url": "/share?data=%s"
+    }
+  ],
+  
+  "file_handlers": [
+    {
+      "action": "/import-progress",
+      "accept": {
+        "application/json": [".progress", ".save"]
+      },
+      "name": "Game Progress Files",
+      "icons": [
+        {
+          "src": "/assets/images/file-icon.png",
+          "sizes": "256x256",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  
+  "share_target": {
+    "action": "/share-achievement",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "certificate",
+          "accept": ["image/*"]
+        }
+      ]
+    }
+  },
+  
+  "permissions": [
+    "notifications",
+    "background-sync",
+    "persistent-storage"
+  ],
+  
+  "serviceworker": {
+    "src": "/sw.js",
+    "scope": "/",
+    "update_via_cache": "none"
+  }
+}

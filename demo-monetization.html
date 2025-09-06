@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monetization & Marketing Demo - Enchanted Library Quest</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #8B5CF6, #60A5FA);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .demo-header h1 {
+            color: #8B5CF6;
+            margin-bottom: 10px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: #F9FAFB;
+            border: 2px solid #E5E7EB;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: #8B5CF6;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+        }
+        
+        .feature-card h3 {
+            color: #7C3AED;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+        }
+        
+        .demo-buttons {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .demo-btn {
+            padding: 12px 20px;
+            background: #8B5CF6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-btn:hover {
+            background: #7C3AED;
+            transform: translateY(-2px);
+        }
+        
+        .demo-btn.secondary {
+            background: #60A5FA;
+        }
+        
+        .demo-btn.success {
+            background: #34D399;
+        }
+        
+        .demo-btn.warning {
+            background: #FCD34D;
+            color: #1F2937;
+        }
+        
+        .demo-btn.danger {
+            background: #EF4444;
+        }
+        
+        .feature-stats {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #8B5CF6;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 10px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8B5CF6;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #6B7280;
+            margin-top: 5px;
+        }
+        
+        .demo-output {
+            background: #1F2937;
+            color: #F9FAFB;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin: 20px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .revenue-dashboard {
+            background: linear-gradient(135deg, #34D399, #059669);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .revenue-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .revenue-stat {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .revenue-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .analytics-chart {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #E5E7EB;
+        }
+        
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, #F3F4F6, #E5E7EB);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6B7280;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>💰 Monetization & Marketing System Demo</h1>
+            <p>Complete revenue generation and user acquisition platform for FableBox</p>
+        </div>
+
+        <!-- Revenue Dashboard -->
+        <div class="revenue-dashboard">
+            <h2>📊 Live Revenue Dashboard</h2>
+            <p>Real-time business metrics and conversion tracking</p>
+            <div class="revenue-stats">
+                <div class="revenue-stat">
+                    <div class="revenue-value" id="total-revenue">$0</div>
+                    <div>Total Revenue</div>
+                </div>
+                <div class="revenue-stat">
+                    <div class="revenue-value" id="monthly-recurring">$0</div>
+                    <div>Monthly Recurring</div>
+                </div>
+                <div class="revenue-stat">
+                    <div class="revenue-value" id="conversion-rate">0%</div>
+                    <div>Conversion Rate</div>
+                </div>
+                <div class="revenue-stat">
+                    <div class="revenue-value" id="user-count">0</div>
+                    <div>Active Users</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Grid -->
+        <div class="feature-grid">
+            <!-- Freemium Model -->
+            <div class="feature-card">
+                <h3><span class="feature-icon">🆓</span>Freemium Model</h3>
+                <p>Smart access control with trial conversions</p>
+                <div class="feature-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="free-users">0</div>
+                            <div class="stat-label">Free Users</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="trial-users">0</div>
+                            <div class="stat-label">Trial Users</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="premium-users">0</div>
+                            <div class="stat-label">Premium Users</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-buttons">
+                    <button class="demo-btn" onclick="demoFreemiumModel()">🚀 Demo Free User Journey</button>
+                    <button class="demo-btn secondary" onclick="demoTrialFlow()">🆓 Demo 7-Day Trial</button>
+                    <button class="demo-btn success" onclick="demoPremiumUpgrade()">💎 Demo Premium Upgrade</button>
+                </div>
+            </div>
+
+            <!-- FableBox Integration -->
+            <div class="feature-card">
+                <h3><span class="feature-icon">📚</span>FableBox Integration</h3>
+                <p>Cross-promotion and book discount system</p>
+                <div class="feature-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="discount-codes">0</div>
+                            <div class="stat-label">Discount Codes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="book-conversions">0</div>
+                            <div class="stat-label">Book Sales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">20%</div>
+                            <div class="stat-label">Discount Rate</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-buttons">
+                    <button class="demo-btn warning" onclick="demoDiscountGeneration()">🎁 Generate Discount Code</button>
+                    <button class="demo-btn secondary" onclick="demoCharacterCustomization()">🎨 Character in Book</button>
+                    <button class="demo-btn success" onclick="demoFableBoxVisit()">📚 Visit FableBox Store</button>
+                </div>
+            </div>
+
+            <!-- Social Features -->
+            <div class="feature-card">
+                <h3><span class="feature-icon">👫</span>Social Features</h3>
+                <p>Viral growth and community building</p>
+                <div class="feature-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="shares-count">0</div>
+                            <div class="stat-label">Shares</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="invites-sent">0</div>
+                            <div class="stat-label">Invites Sent</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="viral-coefficient">0.0</div>
+                            <div class="stat-label">Viral Coefficient</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-buttons">
+                    <button class="demo-btn" onclick="demoCertificateSharing()">🏆 Share Achievement</button>
+                    <button class="demo-btn secondary" onclick="demoFriendInvites()">📧 Send Friend Invite</button>
+                    <button class="demo-btn success" onclick="demoLeaderboards()">🥇 Show Leaderboards</button>
+                </div>
+            </div>
+
+            <!-- Analytics & A/B Testing -->
+            <div class="feature-card">
+                <h3><span class="feature-icon">📈</span>Analytics & A/B Testing</h3>
+                <p>Data-driven optimization and insights</p>
+                <div class="feature-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="events-tracked">0</div>
+                            <div class="stat-label">Events Tracked</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="experiments-running">4</div>
+                            <div class="stat-label">A/B Tests</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="engagement-score">0</div>
+                            <div class="stat-label">Engagement</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-buttons">
+                    <button class="demo-btn" onclick="demoAnalyticsTracking()">📊 Track User Event</button>
+                    <button class="demo-btn secondary" onclick="demoHeatmaps()">🔥 Generate Heat Map</button>
+                    <button class="demo-btn warning" onclick="demoABTesting()">🧪 Run A/B Test</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Charts -->
+        <div class="analytics-chart">
+            <h3>📈 Conversion Funnel Analysis</h3>
+            <div class="chart-placeholder">
+                <div>Interactive conversion funnel visualization would appear here</div>
+            </div>
+        </div>
+
+        <div class="analytics-chart">
+            <h3>🔥 User Interaction Heat Map</h3>
+            <div class="chart-placeholder">
+                <div>Click and interaction heat map overlay would appear here</div>
+            </div>
+        </div>
+
+        <!-- Demo Output Log -->
+        <div class="demo-output" id="demo-log">
+            <div>💰 Monetization & Marketing Demo Ready!</div>
+            <div>🚀 Click any button above to test the revenue generation systems</div>
+            <div>📊 All interactions are tracked and analyzed in real-time</div>
+        </div>
+    </div>
+
+    <!-- Load all systems -->
+    <script src="js/animation-system.js"></script>
+    <script src="js/sound-system.js"></script>
+    <script src="js/save-system.js"></script>
+    <script src="js/achievement-system.js"></script>
+    <script src="js/parent-dashboard.js"></script>
+    <script src="js/monetization-system.js"></script>
+    <script src="js/social-system.js"></script>
+    <script src="js/analytics-system.js"></script>
+
+    <script>
+        // Initialize demo systems
+        let monetizationSystem, socialSystem, analyticsSystem;
+        let demoStats = {
+            totalRevenue: 0,
+            monthlyRecurring: 0,
+            conversionRate: 0,
+            userCount: 0,
+            freeUsers: 0,
+            trialUsers: 0,
+            premiumUsers: 0,
+            discountCodes: 0,
+            bookConversions: 0,
+            sharesCount: 0,
+            invitesSent: 0,
+            viralCoefficient: 0,
+            eventsTracked: 0,
+            engagementScore: 0
+        };
+
+        // Mock game engine for demo
+        const mockGame = {
+            gameState: {
+                player: { name: 'Demo Player', age: 8 },
+                progress: { stars: 15, puzzlesSolved: 12, completionPercentage: 65 }
+            },
+            showNotification: function(message, type) {
+                log(`🔔 ${message}`);
+            }
+        };
+
+        // Initialize systems
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                monetizationSystem = new MonetizationSystem(mockGame);
+                socialSystem = new SocialSystem(mockGame);
+                analyticsSystem = new AnalyticsSystem(mockGame);
+                
+                // Make systems globally available
+                window.monetizationSystem = monetizationSystem;
+                window.socialSystem = socialSystem;
+                window.analyticsSystem = analyticsSystem;
+                
+                log('✅ All monetization & marketing systems initialized!');
+                
+                // Start demo metrics updates
+                setInterval(updateDemoMetrics, 2000);
+                
+            } catch (error) {
+                log(`❌ Demo initialization error: ${error.message}`);
+            }
+        });
+
+        // Demo functions
+        function log(message) {
+            const output = document.getElementById('demo-log');
+            const timestamp = new Date().toLocaleTimeString();
+            output.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            output.scrollTop = output.scrollHeight;
+            
+            // Track analytics event
+            if (analyticsSystem) {
+                analyticsSystem.trackEvent('demo_action', { message });
+                demoStats.eventsTracked++;
+                demoStats.engagementScore += Math.floor(Math.random() * 5) + 1;
+            }
+        }
+
+        function updateDemoMetrics() {
+            // Update demo statistics with realistic simulation
+            document.getElementById('total-revenue').textContent = `$${demoStats.totalRevenue.toLocaleString()}`;
+            document.getElementById('monthly-recurring').textContent = `$${demoStats.monthlyRecurring.toLocaleString()}`;
+            document.getElementById('conversion-rate').textContent = `${demoStats.conversionRate.toFixed(1)}%`;
+            document.getElementById('user-count').textContent = demoStats.userCount.toLocaleString();
+            
+            document.getElementById('free-users').textContent = demoStats.freeUsers;
+            document.getElementById('trial-users').textContent = demoStats.trialUsers;
+            document.getElementById('premium-users').textContent = demoStats.premiumUsers;
+            
+            document.getElementById('discount-codes').textContent = demoStats.discountCodes;
+            document.getElementById('book-conversions').textContent = demoStats.bookConversions;
+            
+            document.getElementById('shares-count').textContent = demoStats.sharesCount;
+            document.getElementById('invites-sent').textContent = demoStats.invitesSent;
+            document.getElementById('viral-coefficient').textContent = demoStats.viralCoefficient.toFixed(1);
+            
+            document.getElementById('events-tracked').textContent = demoStats.eventsTracked;
+            document.getElementById('engagement-score').textContent = demoStats.engagementScore;
+        }
+
+        // Freemium Model Demos
+        function demoFreemiumModel() {
+            log('🆓 Simulating free user experience...');
+            
+            // Simulate daily limit reached
+            setTimeout(() => {
+                if (monetizationSystem) {
+                    monetizationSystem.showUpgradePrompt('daily_limit_reached', 
+                        'You\'ve reached your daily limit of 1 adventure path. Upgrade for unlimited access!');
+                }
+                demoStats.freeUsers++;
+                log('📈 Free user converted to upgrade prompt view');
+            }, 1000);
+        }
+
+        function demoTrialFlow() {
+            log('🆓 Starting 7-day trial flow...');
+            
+            if (monetizationSystem) {
+                const success = monetizationSystem.startTrial();
+                if (success) {
+                    demoStats.trialUsers++;
+                    demoStats.conversionRate = (demoStats.premiumUsers / (demoStats.trialUsers + demoStats.premiumUsers)) * 100;
+                    log('✅ Trial started successfully! User gets 7 days of premium features.');
+                }
+            }
+        }
+
+        function demoPremiumUpgrade() {
+            log('💎 Demonstrating premium upgrade flow...');
+            
+            if (monetizationSystem) {
+                monetizationSystem.showPaymentModal();
+                demoStats.premiumUsers++;
+                demoStats.totalRevenue += 999; // $9.99
+                demoStats.monthlyRecurring += 999;
+                demoStats.conversionRate = (demoStats.premiumUsers / (demoStats.trialUsers + demoStats.premiumUsers)) * 100;
+                log('💰 Premium upgrade completed! +$9.99 MRR');
+            }
+        }
+
+        // FableBox Integration Demos
+        function demoDiscountGeneration() {
+            log('🎁 Generating FableBox discount code...');
+            
+            if (monetizationSystem) {
+                monetizationSystem.generateFableBoxDiscount();
+                demoStats.discountCodes++;
+                log('📝 20% discount code generated for book purchases');
+            }
+        }
+
+        function demoCharacterCustomization() {
+            log('🎨 Enabling character customization for book...');
+            log('👦 Player character will appear in their next FableBox book');
+            log('📚 Creates deeper connection between game and books');
+        }
+
+        function demoFableBoxVisit() {
+            log('📚 Redirecting to FableBox store with discount...');
+            
+            if (monetizationSystem) {
+                monetizationSystem.goToFableBox();
+                demoStats.bookConversions++;
+                demoStats.totalRevenue += 1500; // $15 book purchase
+                log('💰 Book purchase completed! +$15.00 revenue');
+            }
+        }
+
+        // Social Features Demos
+        function demoCertificateSharing() {
+            log('🏆 Generating shareable achievement certificate...');
+            
+            if (socialSystem) {
+                // Mock certificate
+                const certificate = {
+                    id: 'demo_cert',
+                    playerName: 'Demo Player',
+                    shareableImageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCI+PC9zdmc+'
+                };
+                
+                socialSystem.showSharingModal(certificate);
+                demoStats.sharesCount++;
+                demoStats.viralCoefficient = demoStats.invitesSent / demoStats.userCount || 0;
+                log('📱 Certificate shared on social media!');
+            }
+        }
+
+        function demoFriendInvites() {
+            log('📧 Sending friend invitation...');
+            
+            if (socialSystem) {
+                socialSystem.showInviteModal();
+                demoStats.invitesSent++;
+                demoStats.viralCoefficient = demoStats.invitesSent / Math.max(demoStats.userCount, 1);
+                log('👫 Friend invite sent with bonus rewards!');
+            }
+        }
+
+        function demoLeaderboards() {
+            log('🥇 Displaying competitive leaderboards...');
+            log('⚡ Speed puzzle solving rankings');
+            log('🏆 Achievement point leaders');
+            log('🎯 Monthly completion champions');
+        }
+
+        // Analytics Demos
+        function demoAnalyticsTracking() {
+            log('📊 Tracking user engagement event...');
+            
+            if (analyticsSystem) {
+                analyticsSystem.trackEvent('demo_interaction', {
+                    feature: 'monetization_demo',
+                    value: Math.floor(Math.random() * 100),
+                    timestamp: Date.now()
+                });
+                
+                demoStats.eventsTracked++;
+                log('📈 Event tracked and sent to analytics pipeline');
+            }
+        }
+
+        function demoHeatmaps() {
+            log('🔥 Generating user interaction heat map...');
+            
+            if (analyticsSystem) {
+                const heatmap = analyticsSystem.generateHeatmapVisualization('/demo', 'click');
+                log(`🎯 Heat map generated: ${heatmap.totalInteractions} interactions`);
+                log(`🔥 Hotspots identified: ${heatmap.hotspots.length} high-traffic areas`);
+                log(`❄️ Cold spots identified: ${heatmap.coldspots.length} low-engagement areas`);
+            }
+        }
+
+        function demoABTesting() {
+            log('🧪 Running A/B test experiment...');
+            
+            if (analyticsSystem) {
+                const experiments = ['puzzle_difficulty', 'upgrade_prompt_timing', 'character_design'];
+                const experiment = experiments[Math.floor(Math.random() * experiments.length)];
+                
+                analyticsSystem.trackExperimentResult(experiment, Math.random(), 'conversion_rate');
+                log(`🔬 A/B test "${experiment}" result recorded`);
+                log('📊 Statistical significance analysis in progress...');
+            }
+        }
+
+        // Simulate organic growth
+        setInterval(() => {
+            demoStats.userCount += Math.floor(Math.random() * 3);
+            demoStats.freeUsers += Math.floor(Math.random() * 2);
+            
+            // Occasional trial conversions
+            if (Math.random() < 0.1) {
+                demoStats.trialUsers++;
+                log('🎉 New trial user acquired!');
+            }
+            
+            // Occasional premium conversions
+            if (Math.random() < 0.05) {
+                demoStats.premiumUsers++;
+                demoStats.totalRevenue += 999;
+                demoStats.monthlyRecurring += 999;
+                log('💎 Trial user converted to Premium!');
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Puzzle System Test - Enchanted Library Quest</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #8B5CF6, #60A5FA);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        
+        .test-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .test-btn {
+            padding: 10px 20px;
+            background: #8B5CF6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .test-btn:hover {
+            background: #7C3AED;
+            transform: translateY(-2px);
+        }
+        
+        .test-btn.active {
+            background: #5B21B6;
+            transform: scale(1.05);
+        }
+        
+        .puzzle-display {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #E5E7EB;
+            border-radius: 15px;
+            background: #F9FAFB;
+        }
+        
+        .stats-display {
+            margin: 20px 0;
+            padding: 15px;
+            background: #FEF3C7;
+            border-radius: 10px;
+            border: 2px solid #F59E0B;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8B5CF6;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6B7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 style="text-align: center; color: #8B5CF6; margin-bottom: 30px;">
+            🧩 Advanced Puzzle System Testing
+        </h1>
+        
+        <div class="test-nav">
+            <button class="test-btn" onclick="testMathPuzzle('ages4-6')">Math Ages 4-6</button>
+            <button class="test-btn" onclick="testMathPuzzle('ages7-9')">Math Ages 7-9</button>
+            <button class="test-btn" onclick="testMathPuzzle('ages10-12')">Math Ages 10-12</button>
+            <button class="test-btn" onclick="testLanguagePuzzle('ages4-6')">Language Ages 4-6</button>
+            <button class="test-btn" onclick="testLanguagePuzzle('ages7-9')">Language Ages 7-9</button>
+            <button class="test-btn" onclick="testLanguagePuzzle('ages10-12')">Language Ages 10-12</button>
+            <button class="test-btn" onclick="testSciencePuzzle('ages4-6')">Science Ages 4-6</button>
+            <button class="test-btn" onclick="testSciencePuzzle('ages7-9')">Science Ages 7-9</button>
+            <button class="test-btn" onclick="testSciencePuzzle('ages10-12')">Science Ages 10-12</button>
+            <button class="test-btn" onclick="showStats()">Show Stats</button>
+        </div>
+        
+        <div id="puzzle-content" class="puzzle-display">
+            <div style="text-align: center; color: #6B7280; padding: 40px;">
+                <h3>🎯 Select a puzzle type to begin testing</h3>
+                <p>Choose from math, language, or science puzzles across different age groups to test the adaptive difficulty system, visual aids, and educational feedback mechanisms.</p>
+            </div>
+        </div>
+        
+        <div id="stats-display" class="stats-display" style="display: none;">
+            <h3 style="color: #D97706; margin-bottom: 15px;">📊 Performance Statistics</h3>
+            <div id="stats-content"></div>
+        </div>
+        
+        <div style="background: #F3E8FF; padding: 20px; border-radius: 15px; margin-top: 30px;">
+            <h3 style="color: #8B5CF6; margin-bottom: 15px;">🎮 Testing Features</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <div style="background: white; padding: 15px; border-radius: 10px;">
+                    <strong style="color: #7C3AED;">📚 Educational Content</strong><br>
+                    <small style="color: #6B7280;">Age-appropriate math, language, and science puzzles with progressive difficulty</small>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 10px;">
+                    <strong style="color: #7C3AED;">🎯 Adaptive Difficulty</strong><br>
+                    <small style="color: #6B7280;">AI-powered difficulty adjustment based on performance tracking</small>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 10px;">
+                    <strong style="color: #7C3AED;">💡 Graduated Hints</strong><br>
+                    <small style="color: #6B7280;">Multi-level hint system with encouraging scaffolded support</small>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 10px;">
+                    <strong style="color: #7C3AED;">🎨 Visual Learning</strong><br>
+                    <small style="color: #6B7280;">Interactive visual aids and counting objects for enhanced understanding</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load puzzle system -->
+    <script src="js/puzzle-system.js"></script>
+    
+    <script>
+        // Initialize adaptive difficulty manager
+        let adaptiveDifficultyManager = new AdaptiveDifficultyManager();
+        let currentPuzzle = null;
+        
+        function testMathPuzzle(ageGroup) {
+            console.log(`Testing Math Puzzle for ${ageGroup}`);
+            setActiveButton(event.target);
+            
+            const difficulty = adaptiveDifficultyManager.getRecommendedDifficulty();
+            currentPuzzle = MathPuzzle.createAgePuzzle(ageGroup, difficulty);
+            
+            if (currentPuzzle) {
+                currentPuzzle.start();
+                renderPuzzle(currentPuzzle);
+                setupEventListeners(currentPuzzle);
+            }
+        }
+        
+        function testLanguagePuzzle(ageGroup) {
+            console.log(`Testing Language Puzzle for ${ageGroup}`);
+            setActiveButton(event.target);
+            
+            const difficulty = adaptiveDifficultyManager.getRecommendedDifficulty();
+            currentPuzzle = LanguagePuzzle.createAgePuzzle(ageGroup, difficulty);
+            
+            if (currentPuzzle) {
+                currentPuzzle.start();
+                renderPuzzle(currentPuzzle);
+                setupEventListeners(currentPuzzle);
+            }
+        }
+        
+        function testSciencePuzzle(ageGroup) {
+            console.log(`Testing Science Puzzle for ${ageGroup}`);
+            setActiveButton(event.target);
+            
+            const difficulty = adaptiveDifficultyManager.getRecommendedDifficulty();
+            currentPuzzle = SciencePuzzle.createAgePuzzle(ageGroup, difficulty);
+            
+            if (currentPuzzle) {
+                currentPuzzle.start();
+                renderPuzzle(currentPuzzle);
+                setupEventListeners(currentPuzzle);
+            }
+        }
+        
+        function renderPuzzle(puzzle) {
+            const container = document.getElementById('puzzle-content');
+            container.innerHTML = puzzle.generateHTML();
+            
+            // Hide stats display
+            document.getElementById('stats-display').style.display = 'none';
+        }
+        
+        function setupEventListeners(puzzle) {
+            const container = document.getElementById('puzzle-content');
+            
+            // Choice buttons
+            container.querySelectorAll('.choice-option').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    // Highlight selection
+                    container.querySelectorAll('.choice-option').forEach(b => b.classList.remove('selected'));
+                    e.target.classList.add('selected');
+                    
+                    const answer = e.target.getAttribute('data-value');
+                    setTimeout(() => submitAnswer(puzzle, answer), 500);
+                });
+            });
+            
+            // Number input
+            const numberInput = container.querySelector('.math-input');
+            if (numberInput) {
+                numberInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        submitAnswer(puzzle, parseFloat(numberInput.value));
+                    }
+                });
+            }
+            
+            // Hint button
+            const hintButton = container.querySelector('.hint-btn');
+            if (hintButton) {
+                hintButton.addEventListener('click', () => showHint(puzzle));
+            }
+            
+            // Submit button
+            const submitButton = container.querySelector('.submit-btn');
+            if (submitButton) {
+                submitButton.addEventListener('click', () => {
+                    let answer;
+                    
+                    const selectedChoice = container.querySelector('.choice-option.selected');
+                    if (selectedChoice) {
+                        answer = selectedChoice.getAttribute('data-value');
+                    } else if (numberInput) {
+                        answer = parseFloat(numberInput.value);
+                    }
+                    
+                    if (answer !== undefined && answer !== null && !isNaN(answer)) {
+                        submitAnswer(puzzle, answer);
+                    } else {
+                        showFeedback('Please provide an answer before submitting.', 'warning');
+                    }
+                });
+            }
+        }
+        
+        function submitAnswer(puzzle, answer) {
+            console.log(`Submitting answer: ${answer}`);
+            
+            const result = puzzle.submitAnswer(answer);
+            showFeedback(result.feedback, result.isCorrect ? 'success' : 'error');
+            
+            if (puzzle.isCompleted) {
+                const performance = puzzle.complete();
+                adaptiveDifficultyManager.recordPerformance(puzzle, performance);
+                
+                // Show completion message
+                setTimeout(() => {
+                    showCompletionMessage(puzzle, result.isCorrect, performance);
+                }, 2000);
+            }
+        }
+        
+        function showHint(puzzle) {
+            const hint = puzzle.getNextHint();
+            if (hint) {
+                const feedbackContainer = document.querySelector('.puzzle-feedback');
+                if (feedbackContainer) {
+                    feedbackContainer.innerHTML = `
+                        <div class="hint-display">
+                            <div class="hint-icon">💡</div>
+                            <div class="hint-content">
+                                <div class="hint-level">Hint ${hint.level} of ${hint.total}:</div>
+                                <div class="hint-text">${hint.hint}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // Update hint button
+                const hintButton = document.querySelector('.hint-btn');
+                if (hintButton) {
+                    hintButton.textContent = `Hint (${puzzle.hintsUsed}/${puzzle.hints.length})`;
+                    if (puzzle.hintsUsed >= puzzle.hints.length) {
+                        hintButton.disabled = true;
+                        hintButton.textContent = 'No More Hints';
+                    }
+                }
+            } else {
+                showFeedback('No more hints available for this puzzle.', 'info');
+            }
+        }
+        
+        function showFeedback(message, type) {
+            const feedbackContainer = document.querySelector('.puzzle-feedback');
+            if (feedbackContainer) {
+                const iconMap = {
+                    success: '🎉',
+                    error: '🤔',
+                    warning: '⚠️',
+                    info: 'ℹ️'
+                };
+                
+                feedbackContainer.innerHTML = `
+                    <div class="feedback-display ${type}">
+                        <div class="feedback-icon">${iconMap[type]}</div>
+                        <div class="feedback-message">${message}</div>
+                    </div>
+                `;
+                feedbackContainer.className = `puzzle-feedback ${type}-feedback`;
+            }
+        }
+        
+        function showCompletionMessage(puzzle, isCorrect, performance) {
+            const container = document.getElementById('puzzle-content');
+            
+            const message = isCorrect ? 
+                `🎉 Excellent work! You completed the ${puzzle.type} puzzle in ${performance.timeSpent.toFixed(1)} seconds with ${performance.attempts} attempt(s) and ${performance.hintsUsed} hint(s). Your efficiency score: ${(performance.efficiency * 100).toFixed(1)}%` :
+                `🤗 Good effort! Keep practicing and you'll get it next time. Learning happens through trying!`;
+            
+            container.innerHTML = `
+                <div class="puzzle-container">
+                    <div class="puzzle-header">
+                        <h3 class="puzzle-title">${isCorrect ? 'Puzzle Complete!' : 'Keep Learning!'}</h3>
+                    </div>
+                    <div class="puzzle-content">
+                        <div class="feedback-display ${isCorrect ? 'success' : 'info'}">
+                            <div class="feedback-icon">${isCorrect ? '🌟' : '💪'}</div>
+                            <div class="feedback-message">${message}</div>
+                        </div>
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button class="test-btn" onclick="location.reload()">Try Another Puzzle</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function showStats() {
+            setActiveButton(event.target);
+            
+            const stats = adaptiveDifficultyManager.getPerformanceStats();
+            const statsContainer = document.getElementById('stats-content');
+            const statsDisplay = document.getElementById('stats-display');
+            
+            if (stats) {
+                statsContainer.innerHTML = `
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value">${stats.totalPuzzles}</div>
+                            <div class="stat-label">Total Puzzles</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${(stats.successRate * 100).toFixed(1)}%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${stats.averageTime.toFixed(1)}s</div>
+                            <div class="stat-label">Avg Time</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${stats.averageHints.toFixed(1)}</div>
+                            <div class="stat-label">Avg Hints Used</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${stats.currentDifficulty}</div>
+                            <div class="stat-label">Current Difficulty</div>
+                        </div>
+                    </div>
+                `;
+                statsDisplay.style.display = 'block';
+            } else {
+                statsContainer.innerHTML = `
+                    <p style="text-align: center; color: #6B7280;">
+                        No performance data yet. Try some puzzles first!
+                    </p>
+                `;
+                statsDisplay.style.display = 'block';
+            }
+            
+            // Clear puzzle content
+            document.getElementById('puzzle-content').innerHTML = `
+                <div style="text-align: center; color: #6B7280; padding: 40px;">
+                    <h3>📊 Performance Statistics</h3>
+                    <p>Review your puzzle-solving performance and adaptive difficulty adjustments.</p>
+                </div>
+            `;
+        }
+        
+        function setActiveButton(button) {
+            document.querySelectorAll('.test-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+        
+        // Initialize with a sample puzzle
+        setTimeout(() => {
+            const firstBtn = document.querySelector('.test-btn');
+            if (firstBtn) {
+                firstBtn.click();
+            }
+        }, 500);
+    </script>
+</body>
+</html>
